@@ -13,25 +13,26 @@ public class Bike  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    private String name;
     private String brand;
     @Column(name = "`year`")
     private Integer year;
     private String description;
-    private String name;
 
     @ManyToOne
     @JoinColumn(name = "categoryId")
-    @JsonIgnoreProperties("bike")
+    @JsonIgnoreProperties("bikes")
     private Category category;
 
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "bike")
-    @JsonIgnoreProperties({"bike","client"})
+    @JsonIgnoreProperties({"bikes","client"})
     //@JsonIgnoreProperties({"bike"})
     private List<Message> messages;
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "bike")
-    @JsonIgnoreProperties({"bike","messages"})
+    @JsonIgnoreProperties({"bikes","messages"})
     //@JsonIgnoreProperties({"bike"})
     public List<Reservation> reservations;
     
